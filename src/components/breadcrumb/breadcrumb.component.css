@@ -1,0 +1,18 @@
+.breadcrumb {
+    display: block;
+    padding: 14px 0;
+    font-weight: 300; }
+    .breadcrumb__item {
+      display: inline-block;
+      margin-right: 5px;
+      font-size: 11px;
+      color: #000; }
+    .breadcrumb__arrow {
+      display: inline-block;
+      padding: 5px;
+      margin-right: 5px;
+      background-image: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4NCjxzdmcgdmVyc2lvbj0iMS4xIiBpZD0i0KHQu9C+0LlfMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgeD0iMHB4IiB5PSIwcHgiIHZpZXdCb3g9IjAgMCA2IDkiIGVuYWJsZS1iYWNrZ3JvdW5kPSJuZXcgMCAwIDYgOSIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSI+DQoJPHBhdGggZmlsbD0ibm9uZSIgc3Ryb2tlPSIjYTlhOWE5IiBzdHJva2UtbWl0ZXJsaW1pdD0iMTAiIGQ9Ik0wLjksMC41bDQsNGwtNCw0Ii8+DQo8L3N2Zz4NCg==);
+      background-repeat: no-repeat;
+      background-position: center;
+      position: relative;
+      top: 2px; }
