@@ -5,9 +5,6 @@ import Paginator from './../paginator/paginator.component';
 import Direction from './../direction/direction.component';
 
 class SortPanel extends React.Component{
-    constructor(){
-        super()
-    }
     render(){
         return (
             <div className={"sort-panel "+ this.props.cls}>
