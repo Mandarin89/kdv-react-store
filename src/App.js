@@ -7,6 +7,7 @@ import Filter from './components/filter/filter.component';
 import SortPanel from './components/sort-panel/sort-panel.component';
 import Catalog from './components/catalog/catalog.component';
 import Footer from './components/footer/footer.component';
+import { connect } from 'react-redux';
 
 class App extends Component {
   
@@ -27,14 +28,18 @@ class App extends Component {
                     <div className="page-title">
                       <h1>Вафли</h1>
                     </div>
+                    { Object.keys(this.props.products).length===0  && <div className='preloader' />}
+                    { console.log(Object.keys(this.props.products).length) }
                     <div className="products">
-                      <SortPanel />
+                      { Object.keys(this.props.products).length>0 && <SortPanel /> }
                       <div className="page__filter_mobile">
                           <p>Фильтр</p>
                       </div>
+                      
                       <Catalog />
-                      <SortPanel cls='sort-panel_margin_top'/>
-                    </div>                  
+                      { Object.keys(this.props.products).length>0 && <SortPanel cls='sort-panel_margin_top'/> }
+                    </div>
+            
                   </div>
                 </div>              
               </div>
@@ -47,4 +52,11 @@ class App extends Component {
   }
 }
 
-export default App;
+export default connect(
+    state => ({
+      products : state.getProducts.products
+    }),
+    dispatch => ({
+    })
+  
+  )(App);

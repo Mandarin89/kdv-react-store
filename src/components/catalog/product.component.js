@@ -1,11 +1,16 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { AddToBasket } from './../../actions/addToBasket';
 
 import PlusIcon from './../../assets/plus.png';
 import CartEmpty from './../../assets/cart_empty.png';
 
 class Product extends React.Component{
+    addCart(obj,quantity){
+       AddToBasket(obj, quantity);
+    }
     render(){
-        let data = this.props.data;
+        const data = this.props.data;
         return (
                 <div className="products__item">
                     <div className="products__image">
@@ -27,7 +32,8 @@ class Product extends React.Component{
                             }
                         </div>
                         <div className="products__addToBasket">
-                        <div className="products__addToBasket_default">
+                        <div className="products__addToBasket_default" onClick ={ () => this.addCart(data,1) }>
+
                             <img src={PlusIcon} alt="" />
                             <img src={CartEmpty} alt="" />
                         </div>
@@ -44,4 +50,14 @@ class Product extends React.Component{
     }
 }
 
-export default Product;
+export default connect(
+    state => ({
+      
+    }),
+    dispatch => ({
+        add:()=>{
+            dispatch(this.addCart());
+        }
+    })
+  
+  )(Product);   

@@ -5,7 +5,14 @@ import Paginator from './../paginator/paginator.component';
 import Direction from './../direction/direction.component';
 
 class SortPanel extends React.Component{
+    list(){
+        console.log(123);
+        const hover = 1;
+        return hover;
+    }
     render(){
+        
+
         return (
             <div className={"sort-panel "+ this.props.cls}>
                 <div className="sort-panel__left">
@@ -26,8 +33,8 @@ class SortPanel extends React.Component{
                 <div className="sort-panel__right">
                     <Paginator />
                 <div className="page-view">
-                    <div className="page-view__block page-view__block_hover"></div>
-                    <div className="page-view__list"></div>
+                    <div className="page-view__block page-view__block_hover" onClick={ ()=> this.list() }></div>
+                    <div className={"page-view__list " + this.hover}></div>
                 </div>
                 </div>
             </div>

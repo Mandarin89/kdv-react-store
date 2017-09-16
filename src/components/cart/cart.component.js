@@ -14,7 +14,7 @@ class Cart extends React.Component {
                 </div>
                 <div className="cart__body">
                     <div className="cart__count">10 тов</div>
-                    <div className="cart__price"><span>2653,10</span> <span className='rub'>&#8381;</span></div>
+                    <div className="cart__price"><span>2230,30</span> <span className='rub'>&#8381;</span></div>
                 </div>
             </div>
       )

@@ -6,16 +6,35 @@ import Product from './product.component';
 
 
 class Catalog extends React.Component{
-    render(){
+    componentDidMount(){
         this.props.onInit();
-        return(
-            <div className="products__row">
-            {this.props.products.map(prod =>
-                    <Product key={prod.id} data = {prod}/>
-                )
+    }
+    render(){
+        let count = 0;
+        let num = 0;
+        let group = this.props.products.reduce( (obj,item)=>{
+            if(count == 3){
+                count = 0;
+                num += 1;
             }
-                
-            </div>            
+            count += 1;
+            obj[num] = obj[num] || [];
+            obj[num].push(item);
+            return obj;
+        },[]);
+        return(
+            <div className="product__layuot">
+            {
+                group.map( (groupItem,index) => {
+                    return (
+                    <div className="products__row" key={index}>
+                        
+                        { groupItem.map(productData => <Product key={productData.id} data={ productData }/>) }
+                    </div>
+                );
+                })
+            }                
+            </div>
         )
     }
 };
