@@ -6,9 +6,23 @@ import PlusIcon from './../../assets/plus.png';
 import CartEmpty from './../../assets/cart_empty.png';
 
 class Product extends React.Component{
-    addCart(obj,quantity){
-       AddToBasket(obj, quantity);
+    constructor(){
+        super();
+        this.active = false;
+        this.inputValue = 0;
     }
+    addCart(obj,quantity,type){
+       this.props.add(obj,quantity,type);
+       this.active = true;
+       this.forceUpdate();
+    }
+    productQuantity(){
+        for(let i = 0; i < this.props.cart.length; i++) {
+            if (this.props.cart[i].id == this.props.data['id']) {
+                return this.props.data['quantity'];
+            }
+        }
+    }    
     render(){
         const data = this.props.data;
         return (
@@ -31,16 +45,17 @@ class Product extends React.Component{
                                 </div>
                             }
                         </div>
+                        
                         <div className="products__addToBasket">
-                        <div className="products__addToBasket_default" onClick ={ () => this.addCart(data,1) }>
+                        <div className={!this.active ? 'products__addToBasket_default': 'products__addToBasket_default hide' } onClick ={ () => this.addCart(data,1,'p') }>
 
                             <img src={PlusIcon} alt="" />
                             <img src={CartEmpty} alt="" />
                         </div>
-                        <div className="controls">
-                            <div className="controls__add"></div>
-                            <input type="text" className="controls__count" />
-                            <div className="controls__minus"></div>
+                        <div className={this.active ? "controls show": 'controls'} >
+                            <div className="controls__minus" onClick ={ () => this.addCart(data,1,'m') }></div>
+                            <input type="text" className="controls__count" value={ this.productQuantity() } />
+                            <div className="controls__plus" onClick ={ () => this.addCart(data,1,'p') }></div>
                             
                         </div>
                         </div>
@@ -52,11 +67,11 @@ class Product extends React.Component{
 
 export default connect(
     state => ({
-      
+        cart : state.addToBasket
     }),
     dispatch => ({
-        add:()=>{
-            dispatch(this.addCart());
+        add: (obj,quantity,type)=>{
+            dispatch(AddToBasket(obj,quantity,type));
         }
     })
   

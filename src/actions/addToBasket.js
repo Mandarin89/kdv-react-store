@@ -1,22 +1,35 @@
 import store from './../store';
 
-export const AddToBasket = (prod, quantity) =>{
-    let cartItems = store.getState().getProducts.cart;
-    let num = null,
-        addObj = null;
+export const AddToBasket = (prod, quantity,type) =>{
+    let cartItems = store.getState().addToBasket;
+    let exist = false,
+        addObj = [];
     
-    if(Object.keys(cartItems).length>0){
-        addObj = cartItems.each( (item, index) =>{
-            if(item.id == prod.id)
-                num = index;
-        })
+    //console.log(cartItems);
+    if(cartItems.length>0){
+        cartItems.forEach( (item)=> {
+            if(item.id === prod.id){
+                if(type === 'p'){
+                    exist = true;
+                    item.quantity = parseInt(item.quantity,10) + quantity;
+                }else if(type ==='m' && item.quantity>=quantity){
+                    item.quantity = parseInt(item.quantity,10) - quantity;         
+                }else{
+                    item.quantity = 0;
+                }
+            }           
+        });
+        if(!exist && type ==='p'){
+            prod.quantity += 1;
+            cartItems.push(prod);
+        }
+        addObj = cartItems;
     }else{
-        addObj = prod;
+        prod.quantity += 1;
+        addObj.push(prod);
     }
-    console.log(addObj);
-    return dispatch => {
-
-       dispatch({ type: 'ADD_CART', payload: addObj });
-    }
+      
+    
+    return dispatch => dispatch({ type: 'ADD_CART', payload: addObj });
 }
 

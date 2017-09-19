@@ -29,7 +29,6 @@ class App extends Component {
                       <h1>Вафли</h1>
                     </div>
                     { Object.keys(this.props.products).length===0  && <div className='preloader' />}
-                    { console.log(Object.keys(this.props.products).length) }
                     <div className="products">
                       { Object.keys(this.props.products).length>0 && <SortPanel /> }
                       <div className="page__filter_mobile">

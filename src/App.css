@@ -640,9 +640,13 @@ main {
     align-items: center;
     cursor: pointer;
     margin-top: -5px; }
+    .products__addToBasket_default.hide{
+      display: none;
+    }
 
 .controls {
   display: none;
+  margin-top: -7px;
   flex-direction: row;
   justify-content: flex-start;
   align-items: center;
@@ -650,8 +654,9 @@ main {
   height: 30px;
   padding: 4px;
   border: 1px solid #a9a9a9; }
-  .controls__add {
+  .controls__minus {
     width: 28px;
+    cursor: pointer;
     height: 30px;
     display: block;
     background-image: url("./assets/minus.png");
@@ -665,7 +670,8 @@ main {
     text-align: center;
     font-size: 13px;
     font-weight: 700; }
-  .controls__minus {
+  .controls__plus {
+    cursor: pointer;
     width: 28px;
     height: 30px;
     display: block;
@@ -674,7 +680,7 @@ main {
     background-position: 6px; }
 
 .show {
-  display: block; }
+  display: flex; }
 
 .footer {
   display: block;

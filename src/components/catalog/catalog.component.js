@@ -13,7 +13,7 @@ class Catalog extends React.Component{
         let count = 0;
         let num = 0;
         let group = this.props.products.reduce( (obj,item)=>{
-            if(count == 3){
+            if(count === 3){
                 count = 0;
                 num += 1;
             }
@@ -42,7 +42,11 @@ class Catalog extends React.Component{
 
 export default connect(
     state => ({
-      products : state.getProducts.products
+      products : (()=>{
+        let product = state.getProducts.products;
+        let search = state.findProduct;
+        return product.filter( prod => prod.name.includes(search) );
+      })()
     }),
     dispatch => ({
         onInit:()=>{
